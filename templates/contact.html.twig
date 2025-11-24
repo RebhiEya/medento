@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - Medento{% endblock %}
+
+{% block body %}
+    <section class="contact">
+        <h2>Contactez-nous</h2>
+        <p>Remplissez le formulaire ci-dessous pour prendre rendez-vous ou poser vos questions.</p>
+
+        <form method="post" class="contact-form">
+            <label>Nom :</label>
+            <input type="text" name="nom" required>
+
+            <label>Email :</label>
+            <input type="email" name="email" required>
+
+            <label>Message :</label>
+            <textarea name="message" rows="5" required></textarea>
+
+            <button type="submit" class="btn">Envoyer</button>
+        </form>
+    </section>
+{% endblock %}

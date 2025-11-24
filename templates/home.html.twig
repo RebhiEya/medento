@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medento - Excellence Dentaire</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a href="#home" class="logo">
+            <img src="{{ asset('images/medento-logo.jpg') }}" alt="Logo Medento">
+        </a>
+
+        <ul>
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#services">Soins</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Section Accueil -->
+    <section id="home" class="hero">
+        <div class="medical-decoration"></div>
+        <div class="medical-decoration"></div>
+        <div class="medical-decoration"></div>
+
+        <div class="hero-content">
+            <h1>Medento, c'est plus qu'un cabinet dentaire</h1>
+            <p>C'est une expérience digitale dédiée à votre bien-être.
+                Prenez rendez-vous en ligne, suivez vos traitements, découvrez nos services et restez connectés à votre santé dentaire.<br>Votre sourire est notre priorité.
+            </p>
+            <a href="{{ path('app_login') }}" class="btn">Prenez rendez-vous</a>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="about" class="about">
+        <h2>À propos de Medento</h2>
+        <p>Chez Medento, nous mettons tout en œuvre pour offrir des soins dentaires de qualité, dans un cadre confortable et professionnel.
+            Nos experts sont là pour vous accompagner vers un sourire éclatant et une santé bucco-dentaire optimale.</p>
+
+        <img src="{{ asset('images/clinic.jpg') }}" alt="Cabinet dentaire Medento">
+    </section>
+
+    <!-- Section Soins -->
+    <section id="services" class="services">
+        <h2>Nos soins dentaires</h2>
+        <div class="service-grid">
+            <div class="service-item">
+                <div class="service-icon">🦷</div>
+                <h3>Blanchiment</h3>
+                <p>Ravivez la blancheur naturelle de vos dents avec nos techniques modernes et sécuritaires.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🦷</div>
+                <h3>Implants dentaires</h3>
+                <p>Remplacez vos dents manquantes avec des solutions esthétiques et durables.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🦷</div>
+                <h3>Orthodontie</h3>
+                <p>Des traitements discrets et efficaces pour réaligner vos dents.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🦷</div>
+                <h3>Soins conservateurs</h3>
+                <p>Préservez vos dents naturelles avec nos traitements préventifs avancés.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🦷</div>
+                <h3>Parodontologie</h3>
+                <p>Soins spécialisés pour la santé de vos gencives et tissus de soutien.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">🦷</div>
+                <h3>Urgences dentaires</h3>
+                <p>Prise en charge rapide pour tous vos problèmes dentaires urgents.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact">
+        <h2>Contactez-nous</h2>
+        <p>Remplissez le formulaire ci-dessous pour prendre rendez-vous ou poser vos questions.</p>
+
+        <form class="contact-form" method="post">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telephone">Téléphone :</label>
+            <input type="tel" id="telephone" name="telephone">
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit" class="btn btn-secondary">Envoyer</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Medento - Tous droits réservés</p>
+    <p>📞 Téléphone : 97 214 536</p>
+    <p>✉️ contact@medento.com</p>
+    <p>📍 123 Avenue du Sourire, 75000 Tunisie</p>
+    <p>🕒 Lundi - Vendredi : 9h-19h | Samedi : 9h-12h</p>
+</footer>
+
+<script>
+    // Animation au défilement pour éléments dentaires
+    document.addEventListener('DOMContentLoaded', function() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments à animer
+        const elementsToAnimate = document.querySelectorAll('.service-item, .about p, .about img, .contact-form');
+        elementsToAnimate.forEach(el => {
+            el.classList.add('fade-in-dental');
+            observer.observe(el);
+        });
+
+        // Animation du formulaire
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                const btn = this.querySelector('.btn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span class="loading-medical"></span> Envoi en cours...';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    btn.innerHTML = '✓ Message envoyé !';
+                    btn.style.background = 'linear-gradient(135deg, var(--vert-sante), var(--vert-fraicheur))';
+                }, 2000);
+
+                e.preventDefault();
+            });
+        }
+
+        // Animation des icônes de service au hover
+        const serviceIcons = document.querySelectorAll('.service-icon');
+        serviceIcons.forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.animation = 'cleaningSpin 1s linear infinite';
+            });
+
+            icon.addEventListener('mouseleave', function() {
+                this.style.animation = 'none';
+            });
+        });
+    });
+</script>
+</body>
+</html>
