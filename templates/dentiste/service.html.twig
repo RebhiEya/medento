@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/service.css') }}">
+{% endblock %}
+
+{% block title %}Services{% endblock %}
+
+{% block body %}
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="{{ asset('images/docteur.png') }}" alt="docteur">
+                <h3>Docteur. {{ app.user.prenom }}</h3>
+                <p>{{ app.user.email }}</p>
+            </div>
+
+            <ul class="menu">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Patients</a></li>
+                <li><a href="#">Rendez-vous</a></li>
+                <li><a href="#">Ordonnances</a></li>
+                <li class="active"><a href="{{ path('dentiste_service') }}">Services</a></li>
+                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+
+            <div class="service-header">
+                <h1>Liste des services</h1>
+                <a href="{{ path('service_add') }}" class="add-btn">+ Ajouter un service</a>
+            </div>
+
+            <div class="service-grid">
+                {% for s in services %}
+                    <div class="service-card">
+                        <img src="{{ asset('uploads/services/' ~ s.image) }}" alt="" class="service-img">
+
+                        <h3 class="title">{{ s.nom }}</h3>
+                        <p class="description">{{ s.description }}</p>
+                        <span class="price">{{ s.prix }}</span>
+
+
+                        <div class="footer">
+
+                            <div class="actions">
+                                <a href="{{ path('service_edit', {id: s.id}) }}" class="edit">Modifier</a>
+                                <a href="{{ path('service_delete', {id: s.id}) }}" class="delete"
+                                   onclick="return confirm('Supprimer ce service ?')">Supprimer</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="empty">Aucun service disponible.</p>
+                {% endfor %}
+            </div>
+        </main>
+
+    </div>
+
+{% endblock %}

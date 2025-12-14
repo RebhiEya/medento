@@ -1,12 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+{% endblock %}
+
 {% block title %}Dashboard Dentiste{% endblock %}
 
 {% block body %}
 
     <div class="dashboard-container">
 
-        <!-- SIDEBAR -->
+        <!-- SIDEBAR -->+
+
+        
         <aside class="sidebar">
             <div class="profile">
                 <img src="{{ asset('images/docteur.png') }}" alt="docteur">
@@ -18,8 +24,8 @@
                 <li class="active"><a href="#">Dashboard</a></li>
                 <li><a href="#">Patients</a></li>
                 <li><a href="#">Rendez-vous</a></li>
-                <li><a href="#">Ordonnances</a></li>
-                <li><a href="#">Paramètres</a></li>
+                <li><a href="{{ path('dentiste_ordonnance_index') }}">Ordonnances</a><li/>
+                <li><a href="{{ path('dentiste_service') }}">Service</a></li>
                 <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
             </ul>
         </aside>
@@ -35,65 +41,7 @@
                     <span class="icon">⚙️</span>
                 </div>
             </header>
-
-            <!-- CARD PRINCIPALE -->
-            <section class="card">
-                <h2>Historique des rendez-vous</h2>
-
-                <!-- Onglets -->
-                <div class="tabs">
-                    <span class="active">Tous</span>
-                    <span>Confirmés</span>
-                    <span>Annulés</span>
-                    <span>Terminés</span>
-                </div>
-
-                <!-- Tableau -->
-                <table>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>ID</th>
-                        <th>Patient</th>
-                        <th>Service</th>
-                        <th>Date</th>
-                        <th>Heure</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <tr>
-                        <td>1</td>
-                        <td>RDV0123</td>
-                        <td>Yasmine</td>
-                        <td>Détartrage</td>
-                        <td>13/02/2025</td>
-                        <td>09:00</td>
-                        <td class="success">Confirmé</td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>RDV0456</td>
-                        <td>Oussama</td>
-                        <td>Extraction</td>
-                        <td>14/02/2025</td>
-                        <td>14:30</td>
-                        <td class="cancel">Annulé</td>
-                    </tr>
-
-                    </tbody>
-                </table>
-
-                <!-- Pagination -->
-                <div class="pagination">
-                    <span class="active">1</span>
-                    <span>2</span>
-                    <span>3</span>
-                </div>
-
-            </section>
+{
         </main>
     </div>
 

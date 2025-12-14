@@ -3,3 +3,19 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+dentiste_service:
+  path: /dentiste/service
+  controller: App\Controller\ServiceController::index
+
+dentiste_service_add:
+  path: /dentiste/service/add
+  controller: App\Controller\ServiceController::add
+
+dentiste_service_edit:
+  path: /dentiste/service/{id}/edit
+  controller: App\Controller\ServiceController::edit
+
+dentiste_service_delete:
+  path: /dentiste/service/{id}/delete
+  controller: App\Controller\ServiceController::delete

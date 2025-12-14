@@ -45,13 +45,23 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                     <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Remember me
-                        </label>
+                        <input type="checkbox" id="remember" name="_remember_me">
+                        <label for="remember">Remember me</label>
                     </div>
+
+
+
 
                     <button type="submit" class="login-btn">LOGIN</button>
                 </form>
+
+                {# 🔹 LIEN "Créer un compte" -> placé juste ici #}
+                <div class="register-link">
+                    <p>Vous n'avez pas de compte ?
+                        <a href="{{ path('app_register') }}">Créer un compte</a>
+                    </p>
+                </div>
+
             </div>
 
             <!-- RIGHT SIDE -->
@@ -63,3 +73,4 @@
     </div>
 
 {% endblock %}
+

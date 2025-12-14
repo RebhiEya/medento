@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/add-service.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Ajouter un service</h1>
+
+        {{ form_start(form, { 'attr': {'enctype': 'multipart/form-data'} }) }}
+
+        {{ form_row(form.nom) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.prix) }}
+
+        <div class="upload-card">
+            <label for="service_image" class="upload-area">
+                <div class="upload-icon">📁</div>
+                <p>Importer une image</p>
+                <span>Cliquez pour choisir une photo</span>
+            </label>
+
+            {{ form_widget(form.image, {
+                'attr': {
+                    'id': 'service_image',
+                    'accept': 'image/*',
+                    'hidden': true
+                }
+            }) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
