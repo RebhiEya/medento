@@ -2,23 +2,34 @@
 
 namespace App\Controller;
 
+use App\Repository\RendezVousRepository;
+use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
-final class PatientController extends AbstractController
+class PatientController extends AbstractController
 {
-    #[Route('/patient', name: 'app_patient')]
-    public function index(): Response
+    #[Route('/patient/dashboard', name: 'patient_dashboard')]
+    public function dashboard(RendezVousRepository $rendezVousRepository): Response
     {
-        return $this->render('patient/index.html.twig', [
-            'controller_name' => 'PatientController',
+        $rendezVous = $rendezVousRepository->findBy(
+            ['user' => $this->getUser()],
+            ['date' => 'DESC']
+        );
+
+        return $this->render('patient/dashboard.html.twig', [
+            'rendezVous' => $rendezVous
         ]);
     }
 
-    #[Route('/patient/dashboard', name: 'patient_dashboard')]
-    public function dashboard()
+    #[Route('/patient/services', name: 'patient_services')]
+    public function services(ServiceRepository $serviceRepository): Response
     {
-        return $this->render('patient/dashboard.html.twig');
+        $services = $serviceRepository->findAll();
+
+        return $this->render('patient/service.html.twig', [
+            'services' => $services
+        ]);
     }
 }

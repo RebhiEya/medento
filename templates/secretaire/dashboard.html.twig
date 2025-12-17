@@ -1,5 +1,69 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/dashboard1.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Interface Secrétaire</h1>
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="user-box">
+            <div class="avatar">🛂</div>
+            <h3>Secrétaire</h3>
+            <span class="role">Gestion rendez-vous</span>
+        </div>
+
+        <nav class="menu">
+            <a href="{{ path('secretaire_dashboard') }}" class="active">📋 Tous les rendez-vous</a>
+            <a href="{{ path('app_logout') }}" class="logout">🚪 Déconnexion</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+        <h2 class="section-title">📅 Tous les rendez-vous</h2>
+
+        <div class="table-container">
+            <table class="rdv-table">
+                <thead>
+                    <tr>
+                        <th>Patient</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Statut</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for rdv in rendezVous %}
+                    <tr>
+                        <td>{{ rdv.user.prenom }} {{ rdv.user.nom }}</td>
+                        <td>{{ rdv.date|date('d/m/Y H:i') }}</td>
+                        <td>{{ rdv.description }}</td>
+                        <td>
+                            <span class="badge {{ rdv.status }}">
+                                {{ rdv.status|replace({'_':' '})|capitalize }}
+                            </span>
+                        </td>
+                        <td>
+                            {% if rdv.status == 'en_attente' %}
+                                <a href="{{ path('secretaire_rdv_accept', {id: rdv.id}) }}" class="btn success">Accepter</a>
+                                <a href="{{ path('secretaire_rdv_refuse', {id: rdv.id}) }}" class="btn danger">Refuser</a>
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="empty-text">Aucun rendez-vous</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
 {% endblock %}

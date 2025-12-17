@@ -1,19 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Créer un compte{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
+{% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <h1>Créer un compte</h1>
+<div class="auth-wrapper">
 
-        {{ form_start(form) }}
-        {{ form_row(form.nom) }}
-        {{ form_row(form.prenom) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.password) }}
-        {{ form_row(form.tel) }}
-
-        <button type="submit" class="btn btn-primary mt-3">S'inscrire</button>
-        {{ form_end(form) }}
+    <!-- LEFT PANEL -->
+    <div class="auth-left">
+        <div class="illustration">
+            <img src="{{ asset('images/reg.png') }}" alt="Medical illustration">
+        </div>
     </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="auth-right">
+        <div class="form-card">
+            <h2>Create Account</h2>
+
+            <div class="social-login">
+                <button class="social google">Sign up with Google</button>
+                <button class="social facebook">Sign up with Facebook</button>
+            </div>
+
+            <div class="divider">OR</div>
+
+            {{ form_start(form, {'attr': {'class': 'auth-form'}}) }}
+
+                <div class="form-row">
+                    {{ form_widget(form.nom, {'attr': {'placeholder': 'Last name'}}) }}
+                </div>
+
+                <div class="form-row">
+                    {{ form_widget(form.prenom, {'attr': {'placeholder': 'First name'}}) }}
+                </div>
+
+                <div class="form-row">
+                    {{ form_widget(form.email, {'attr': {'placeholder': 'Email address'}}) }}
+                </div>
+
+                <div class="form-row">
+                    {{ form_widget(form.password, {'attr': {'placeholder': 'Password'}}) }}
+                </div>
+
+                <div class="form-row">
+                    {{ form_widget(form.tel, {'attr': {'placeholder': 'Phone number'}}) }}
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Create Account
+                </button>
+
+            {{ form_end(form) }}
+
+            <p class="login-link">
+                Already have an account?
+                <a href="{{ path('app_login') }}">Log in</a>
+            </p>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

@@ -2,21 +2,40 @@
 
 namespace App\Controller;
 
+use App\Entity\RendezVous;
+use App\Repository\RendezVousRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-final class SecretaireController extends AbstractController
+class SecretaireController extends AbstractController
 {
-    #[Route('/secretaire', name: 'app_secretaire')]
-    public function index(): Response
+    #[Route('/secretaire/dashboard', name: 'secretaire_dashboard')]
+    public function dashboard(RendezVousRepository $repo): Response
     {
+        $rendezVous = $repo->findBy([], ['date' => 'DESC']);
+
+        return $this->render('secretaire/dashboard.html.twig', [
+            'rendezVous' => $rendezVous
+        ]);
+    }
+
+    #[Route('/secretaire/rendezvous/{id}/accept', name: 'secretaire_rdv_accept')]
+    public function accept(RendezVous $rendezVous, EntityManagerInterface $em): Response
+    {
+        $rendezVous->setStatus('valide');
+        $em->flush();
+
         return $this->redirectToRoute('secretaire_dashboard');
     }
 
-    #[Route('/secretaire/dashboard', name: 'secretaire_dashboard')]
-    public function dashboard(): Response
+    #[Route('/secretaire/rendezvous/{id}/refuse', name: 'secretaire_rdv_refuse')]
+    public function refuse(RendezVous $rendezVous, EntityManagerInterface $em): Response
     {
-        return $this->render('secretaire/dashboard.html.twig');
+        $rendezVous->setStatus('annule');
+        $em->flush();
+
+        return $this->redirectToRoute('secretaire_dashboard');
     }
 }

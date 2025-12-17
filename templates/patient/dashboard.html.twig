@@ -1,100 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard Dentiste{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/dashboard1.css') }}">
+{% endblock %}
 
 {% block body %}
+<div class="dashboard-layout">
 
-    <div class="dashboard-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="user-box">
+            <div class="avatar">👤</div>
+            <h3>{{ app.user.prenom }} {{ app.user.nom }}</h3>
+            <span class="role">Patient</span>
+        </div>
 
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <div class="profile">
-                <img src="{{ asset('images/avatar.png') }}" alt="avatar">
-                <h3></h3>
-                <p>{{ app.user.email }}</p>
-            </div>
+        <nav class="menu">
+            <a href="{{ path('patient_dashboard') }}" class="active">Dashboard</a>
+            <a href="{{ path('patient_rendezvous_new') }}">Ajouter un rendez-vous</a>
+            <a href="{{ path('patient_services') }}">Services</a>
+            <a href="{{ path('app_logout') }}" class="logout">Déconnexion</a>
+        </nav>
+    </aside>
 
-            <ul class="menu">
-                <li class="active"><a href="#">Dashboard</a></li>
-                <li><a href="#">Patients</a></li>
-                <li><a href="#">Rendez-vous</a></li>
-                <li><a href="#">Ordonnances</a></li>
-                <li><a href="#">Paramètres</a></li>
-                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
-            </ul>
-        </aside>
+    <!-- MAIN -->
+    <main class="main-content">
 
-        <!-- MAIN CONTENT -->
-        <main class="content">
+        <!-- HEADER -->
+        <header class="header">
+            <h2>Bonjour {{ app.user.prenom }} 👋</h2>
+            <p>Voici la liste de vos rendez-vous</p>
+        </header>
 
-            <!-- TOP BAR -->
-            <header class="topbar">
-                <input type="text" placeholder="Rechercher...">
-                <div class="icons">
-                    <span class="icon">🔔</span>
-                    <span class="icon">⚙️</span>
-                </div>
-            </header>
+        <!-- TABLE -->
+        <section class="card">
+            <h3>📅 Mes rendez-vous</h3>
 
-            <!-- CARD PRINCIPALE -->
-            <section class="card">
-                <h2>Historique des rendez-vous</h2>
-
-                <!-- Onglets -->
-                <div class="tabs">
-                    <span class="active">Tous</span>
-                    <span>Confirmés</span>
-                    <span>Annulés</span>
-                    <span>Terminés</span>
-                </div>
-
-                <!-- Tableau -->
-                <table>
+            {% if rendezVous is empty %}
+                <p class="empty">Aucun rendez-vous trouvé.</p>
+            {% else %}
+                <table class="table">
                     <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>ID</th>
-                        <th>Patient</th>
-                        <th>Service</th>
-                        <th>Date</th>
-                        <th>Heure</th>
-                        <th>Status</th>
-                    </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Statut</th>
+                        </tr>
                     </thead>
                     <tbody>
-
-                    <tr>
-                        <td>1</td>
-                        <td>RDV0123</td>
-                        <td>Yasmine</td>
-                        <td>Détartrage</td>
-                        <td>13/02/2025</td>
-                        <td>09:00</td>
-                        <td class="success">Confirmé</td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>RDV0456</td>
-                        <td>Oussama</td>
-                        <td>Extraction</td>
-                        <td>14/02/2025</td>
-                        <td>14:30</td>
-                        <td class="cancel">Annulé</td>
-                    </tr>
-
+                        {% for rdv in rendezVous %}
+                        <tr>
+                            <td>{{ rdv.date|date('d/m/Y H:i') }}</td>
+                            <td>{{ rdv.description }}</td>
+                            <td>
+                                <span class="badge {{ rdv.status }}">
+                                    {{ rdv.status|replace({'_':' '})|capitalize }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
+            {% endif %}
+        </section>
 
-                <!-- Pagination -->
-                <div class="pagination">
-                    <span class="active">1</span>
-                    <span>2</span>
-                    <span>3</span>
-                </div>
-
-            </section>
-        </main>
-    </div>
-
+    </main>
+</div>
 {% endblock %}

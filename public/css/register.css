@@ -1,0 +1,151 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(120deg, #E8F4FE, #F8FAFC);
+}
+
+/* WRAPPER */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+}
+
+/* LEFT */
+.auth-left {
+    width: 45%;
+    background: linear-gradient(160deg, #4A7EFF, #2A5BD7);
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brand .logo {
+    font-size: 40px;
+}
+
+.brand h2 {
+    margin-top: 10px;
+}
+
+.brand p {
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+.illustration {
+    text-align: center;
+}
+
+.illustration img {
+    max-width: 80%;
+}
+
+/* RIGHT */
+.auth-right {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FORM CARD */
+.form-card {
+    background: white;
+    width: 420px;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.form-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* SOCIAL */
+.social-login {
+    display: flex;
+    gap: 10px;
+}
+
+.social {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.social.google { color: #DB4437; }
+.social.facebook { color: #4267B2; }
+
+/* DIVIDER */
+.divider {
+    text-align: center;
+    margin: 20px 0;
+    color: #999;
+}
+
+/* FORM */
+.auth-form .form-row {
+    margin-bottom: 15px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.auth-form input:focus {
+    border-color: #4A7EFF;
+}
+
+/* BUTTON */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #4A7EFF, #2A5BD7);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* LOGIN LINK */
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-link a {
+    color: #4A7EFF;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .auth-left {
+        display: none;
+    }
+
+    .auth-right {
+        width: 100%;
+    }
+
+}

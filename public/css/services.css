@@ -1,0 +1,125 @@
+/* ===============================
+   PALETTE & BASE
+================================ */
+:root {
+    --bleu-principal: #2A5BD7;
+    --bleu-clair: #E8F4FE;
+    --bleu-fonce: #0A2A75;
+    --gris-clair: #F7FAFC;
+    --gris: #CBD5E0;
+    --texte: #2D3748;
+    --ombre: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    background-color: var(--gris-clair);
+}
+
+/* ===============================
+   CONTENEUR
+================================ */
+.services-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.services-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--bleu-fonce);
+    margin-bottom: 40px;
+}
+
+/* ===============================
+   GRID
+================================ */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* ===============================
+   CARD
+================================ */
+.service-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--ombre);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(42, 91, 215, 0.2);
+}
+
+/* ===============================
+   IMAGE
+================================ */
+.service-image {
+    height: 180px;
+    background-color: var(--bleu-clair);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-image img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* ===============================
+   CONTENU
+================================ */
+.service-content {
+    padding: 20px;
+}
+
+.service-content h3 {
+    font-size: 20px;
+    color: var(--bleu-principal);
+    margin-bottom: 10px;
+}
+
+.service-content p {
+    font-size: 14px;
+    color: var(--texte);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* ===============================
+   PRIX
+================================ */
+.service-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--bleu-fonce);
+    margin-bottom: 15px;
+}
+
+/* ===============================
+   BOUTON
+================================ */
+.service-btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background: linear-gradient(135deg, #2A5BD7, #4A7EFF);
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.service-btn:hover {
+    background: linear-gradient(135deg, #1E4FC6, #2A5BD7);
+}

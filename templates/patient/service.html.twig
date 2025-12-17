@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/services.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="services-container">
+
+    <h1 class="services-title">Nos services dentaires</h1>
+
+    <div class="services-grid">
+        {% for service in services %}
+            <div class="service-card">
+
+                <div class="service-image">
+                    {% if service.image %}
+                        <img src="{{ asset('uploads/services/' ~ service.image) }}" alt="{{ service.nom }}">
+                    {% else %}
+                        <img src="{{ asset('images/default-service.png') }}" alt="Service">
+                    {% endif %}
+                </div>
+
+                <div class="service-content">
+                    <h3>{{ service.nom }}</h3>
+                    <p>{{ service.description }}</p>
+
+                    <div class="service-price">
+                        {{ service.prix }} DT
+                    </div>
+
+                    <a href="#" class="service-btn">
+                        Prendre rendez-vous
+                    </a>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

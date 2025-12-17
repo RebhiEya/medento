@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/new.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="form-wrapper">
+    <div class="form-card">
+
+        <h2>Ajouter un rendez-vous</h2>
+
+        {{ form_start(form) }}
+
+            {{ form_row(form.nom) }}
+            {{ form_row(form.prenom) }}
+            {{ form_row(form.date) }}
+            {{ form_row(form.description) }}
+
+            <button type="submit" class="btn-primary">
+                Enregistrer
+            </button>
+
+        {{ form_end(form) }}
+
+        <a href="{{ path('patient_dashboard') }}" class="back">
+            ← Retour au dashboard
+        </a>
+
+    </div>
+</div>
+{% endblock %}
