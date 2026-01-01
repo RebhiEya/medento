@@ -2,23 +2,46 @@
 
 namespace App\Controller;
 
+use App\Repository\RendezVousRepository;
+use App\Repository\ServiceRepository;   // 🔥 AJOUT
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
-final class DentisteController extends AbstractController
+class DentisteController extends AbstractController
 {
-    #[Route('/dentiste', name: 'app_dentiste')]
-    public function index(): Response
-    {
-        return $this->render('dentiste/index.html.twig', [
-            'controller_name' => 'DentisteController',
-        ]);
-    }
-
     #[Route('/dentiste/dashboard', name: 'dentiste_dashboard')]
-    public function dashboard(): Response
+    public function dashboard(RendezVousRepository $repo, ServiceRepository $serviceRepo): Response
     {
-        return $this->render('dentiste/dashboard.html.twig');
+        // 🔵 Statistiques Rendez-vous (déjà existant)
+        $stats = $repo->countRendezVousByDay();
+
+        $labels = [];
+        $data = [];
+
+        foreach ($stats as $row) {
+            $labels[] = $row['day'];
+            $data[] = $row['total'];
+        }
+
+        // 🟢 Statistiques Services (NOUVEAU)
+        $services = $serviceRepo->findAll();
+
+        $serviceLabels = [];
+        $serviceData = [];
+
+        foreach ($services as $service) {
+            $serviceLabels[] = $service->getNom();
+            $serviceData[] = 1;  // 🔥 tu peux remplacer par un vrai compteur si tu veux
+        }
+
+        return $this->render('dentiste/dashboard.html.twig', [
+            'labels' => json_encode($labels),
+            'data' => json_encode($data),
+
+            // 🔥 Envoi des nouvelles variables au Twig
+            'serviceLabels' => json_encode($serviceLabels),
+            'serviceData' => json_encode($serviceData),
+        ]);
     }
 }

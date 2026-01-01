@@ -25,7 +25,7 @@ class RendezVousController extends AbstractController
             $entityManager->persist($rendezVous);
             $entityManager->flush();
 
-            // ✅ REDIRECTION CORRECTE
+            //  REDIRECTION CORRECTE
             return $this->redirectToRoute('patient_dashboard');
         }
 

@@ -1,0 +1,293 @@
+/* =========================
+   PALETTE DE COULEURS
+========================= */
+:root {
+    --blanc-prestige: #FFFFFF;
+    --blanc-ivoire: #FDFDFD;
+    --blanc-perle: #FAFAFA;
+    --blanc-pur: #FFFFFF;
+    --blanc-glace: #F8FAFC;
+
+    --bleu-cristal: #E8F4FE;
+    --bleu-nuage: #D4EBFB;
+    --bleu-aqua: #87CEEB;
+
+    --bleu-royal-light: #4A7EFF;
+    --bleu-royal: #2A5BD7;
+    --bleu-saphir: #4A90E2;
+    --bleu-ocean: #357ABD;
+    --bleu-marine: #2C5AA0;
+    --bleu-roi: #1565C0;
+    --bleu-majeste: #0D3A9E;
+    --bleu-navy: #0A2A75;
+    --bleu-nuit: #1A365D;
+
+    --turquoise: #38B2AC;
+    --emeraude: rgba(9, 99, 48, 0.94);
+
+    --or: #D4AF37;
+    --or-pale: #FFF9E6;
+
+    --gris-perle: #F7FAFC;
+    --gris-lumiere: #EDF2F7;
+    --gris-argent: #CBD5E0;
+    --gris-acier: #718096;
+    --gris-charbon: #2D3748;
+
+    --ombre-portee: 0 8px 32px rgba(10, 42, 117, 0.18);
+}
+
+/* =========================
+   RESET & BASE
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+    background: linear-gradient(
+        180deg,
+        var(--bleu-cristal),
+        var(--blanc-glace)
+    );
+    color: var(--gris-charbon);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+    width: 270px;
+    background: linear-gradient(
+        180deg,
+        var(--bleu-nuit),
+        var(--bleu-navy)
+    );
+    color: var(--blanc-prestige);
+    padding: 30px 22px;
+    box-shadow: var(--ombre-portee);
+}
+
+.user-box {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.avatar {
+    width: 75px;
+    height: 75px;
+    margin: auto;
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        var(--bleu-royal),
+        var(--bleu-royal-light)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: var(--blanc-pur);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.user-box h3 {
+    margin-top: 14px;
+    font-size: 18px;
+    color: var(--blanc-ivoire);
+}
+
+.user-box .role {
+    font-size: 13px;
+    color: var(--bleu-nuage);
+}
+
+/* =========================
+   MENU
+========================= */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--blanc-perle);
+    padding: 12px 16px;
+    border-radius: 10px;
+    background-color: transparent;
+    transition: 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: var(--bleu-majeste);
+}
+
+.menu a.active {
+    background: linear-gradient(
+        90deg,
+        var(--bleu-royal),
+        var(--bleu-saphir)
+    );
+}
+
+.menu a.logout {
+    margin-top: 25px;
+    background-color: var(--or-pale);
+    color: var(--gris-charbon);
+}
+
+.menu a.logout:hover {
+    background-color: var(--or);
+    color: var(--blanc-pur);
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.main-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.section-title {
+    font-size: 26px;
+    margin-bottom: 28px;
+    color: var(--bleu-nuit);
+}
+
+/* =========================
+   TABLE
+========================= */
+.table-container {
+    background-color: var(--blanc-prestige);
+    border-radius: 18px;
+    box-shadow: var(--ombre-portee);
+    overflow-x: auto;
+}
+
+.rdv-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rdv-table thead {
+    background: linear-gradient(
+        90deg,
+        var(--bleu-ocean),
+        var(--bleu-roi)
+    );
+    color: var(--blanc-pur);
+}
+
+.rdv-table th,
+.rdv-table td {
+    padding: 15px 18px;
+}
+
+.rdv-table tbody tr {
+    border-bottom: 1px solid var(--gris-argent);
+}
+
+.rdv-table tbody tr:hover {
+    background-color: var(--gris-perle);
+}
+
+/* =========================
+   EMPTY
+========================= */
+.empty-text {
+    text-align: center;
+    color: var(--gris-acier);
+    padding: 25px;
+}
+
+/* =========================
+   BADGES
+========================= */
+.badge {
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge.en_attente {
+    background-color: var(--bleu-nuage);
+    color: var(--bleu-nuit);
+}
+
+.badge.accepte {
+    background-color: var(--emeraude);
+    color: var(--blanc-pur);
+}
+
+.badge.refuse {
+    background-color: var(--gris-charbon);
+    color: var(--blanc-pur);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+    padding: 7px 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 6px;
+    transition: 0.3s ease;
+}
+
+.btn.success {
+    background: linear-gradient(
+        135deg,
+        var(--turquoise),
+        var(--bleu-aqua)
+    );
+    color: var(--blanc-pur);
+}
+
+.btn.success:hover {
+    background: var(--bleu-saphir);
+}
+
+.btn.danger {
+    background-color: var(--or-pale);
+    color: var(--bleu-nuit);
+}
+
+.btn.danger:hover {
+    background-color: var(--or);
+    color: var(--blanc-pur);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .main-content {
+        padding: 22px;
+    }
+}

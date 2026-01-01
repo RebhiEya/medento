@@ -104,4 +104,14 @@ class RendezVous
         $this->user = $user;
         return $this;
     }
+    public function countRendezVousByMonth()
+    {
+        return $this->createQueryBuilder('r')
+              ->select("DATE_FORMAT(r.date, '%Y-%m') AS month, COUNT(r.id) AS total")
+              ->groupBy('month')
+              ->orderBy('month', 'ASC')
+              ->getQuery()
+              ->getResult();
+    }
+
 }

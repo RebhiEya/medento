@@ -6,9 +6,6 @@ use App\Entity\RendezVous;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<RendezVous>
- */
 class RendezVousRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -16,28 +13,27 @@ class RendezVousRepository extends ServiceEntityRepository
         parent::__construct($registry, RendezVous::class);
     }
 
-    //    /**
-    //     * @return RendezVous[] Returns an array of RendezVous objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Compter les rendez-vous par jour
+     */
+public function countRendezVousByDay(): array
+{
+    $conn = $this->getEntityManager()->getConnection();
 
-    //    public function findOneBySomeField($value): ?RendezVous
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    $sql = "
+        SELECT 
+            DATE(date) AS day,
+            COUNT(*) AS total
+        FROM rendez_vous
+        GROUP BY DATE(date)
+        ORDER BY DATE(date) ASC
+    ";
+
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->executeQuery();
+
+    return $result->fetchAllAssociative();
+}
+
+
 }

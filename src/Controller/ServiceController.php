@@ -32,24 +32,20 @@ class ServiceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // ==== GESTION IMAGE ====
+            // Gestion image
             $imageFile = $form->get('image')->getData();
-
             if ($imageFile) {
                 $fileName = uniqid() . '.' . $imageFile->guessExtension();
-
                 $imageFile->move(
                     $this->getParameter('uploads_directory'),
                     $fileName
                 );
-
                 $service->setImage($fileName);
             }
 
-            // ======================
-
             $em->persist($service);
             $em->flush();
+
             return $this->redirectToRoute('dentiste_service');
         }
 
@@ -67,21 +63,15 @@ class ServiceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // ==== MODIFICATION IMAGE ====
             $imageFile = $form->get('image')->getData();
-
             if ($imageFile) {
                 $fileName = uniqid() . '.' . $imageFile->guessExtension();
-
                 $imageFile->move(
                     $this->getParameter('uploads_directory'),
                     $fileName
                 );
-
                 $service->setImage($fileName);
             }
-
-            // ===========================
 
             $em->flush();
             return $this->redirectToRoute('dentiste_service');
@@ -101,4 +91,5 @@ class ServiceController extends AbstractController
         return $this->redirectToRoute('dentiste_service');
     }
 
+    
 }

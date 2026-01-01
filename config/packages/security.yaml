@@ -19,8 +19,15 @@ security:
       provider: app_user_provider
       custom_authenticator:
         - App\Security\LoginFormAuthenticator
+
+      # Protection anti brute-force (correctement indentée)
+      login_throttling:
+        max_attempts: 5
+        interval: '1 minute'
+
       logout:
         path: app_logout
+
       remember_me:
         secret: '%kernel.secret%'
         lifetime: 604800

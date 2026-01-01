@@ -8,41 +8,81 @@
 
 {% block body %}
 
-    <div class="dashboard-container">
+<div class="dashboard-container">
 
-        <!-- SIDEBAR -->+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="profile">
+            <img src="{{ asset('images/docteur.png') }}" alt="docteur">
+            <h3>Docteur. {{ app.user.prenom }}</h3>
+            <p>{{ app.user.email }}</p>
+        </div>
 
-        
-        <aside class="sidebar">
-            <div class="profile">
-                <img src="{{ asset('images/docteur.png') }}" alt="docteur">
-                <h3>Docteur. {{ app.user.prenom }}</h3>
-                <p>{{ app.user.email }}</p>
+        <ul class="menu">
+            <li class="active"><a href="#">Dashboard</a></li>
+            <li><a href="#">Patients</a></li>
+            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="{{ path('dentiste_service') }}">Service</a></li>
+            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <input type="text" placeholder="Rechercher...">
+            <div class="icons">
+                <span class="icon">🔔</span>
+                <span class="icon">⚙️</span>
             </div>
+        </header>
 
-            <ul class="menu">
-                <li class="active"><a href="#">Dashboard</a></li>
-                <li><a href="#">Patients</a></li>
-                <li><a href="#">Rendez-vous</a></li>
-                <li><a href="{{ path('dentiste_ordonnance_index') }}">Ordonnances</a><li/>
-                <li><a href="{{ path('dentiste_service') }}">Service</a></li>
-                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
-            </ul>
-        </aside>
+        <!-- GRAPH SECTION -->
+        <section class="stats-section">
+            <h2>Statistiques des Rendez-Vous</h2>
 
-        <!-- MAIN CONTENT -->
-        <main class="content">
+            <!-- canvas unique -->
+            <canvas id="rdvChart" width="400" height="150"></canvas>
+        </section>
 
-            <!-- TOP BAR -->
-            <header class="topbar">
-                <input type="text" placeholder="Rechercher...">
-                <div class="icons">
-                    <span class="icon">🔔</span>
-                    <span class="icon">⚙️</span>
-                </div>
-            </header>
-{
-        </main>
-    </div>
+    </main>
+</div>
+
+<!-- SCRIPT CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h2>Statistiques des Rendez-Vous</h2>
+
+<canvas id="rdvChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('rdvChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{ labels|raw }},
+        datasets: [{
+            label: 'Rendez-vous par jour',
+            data: {{ data|raw }},
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
 
 {% endblock %}

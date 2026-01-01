@@ -3,7 +3,8 @@
 {% block title %}Créer un compte{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 {% endblock %}
 
 {% block body %}
