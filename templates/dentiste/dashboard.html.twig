@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dash_dentist.css') }}">
 {% endblock %}
 
 {% block title %}Dashboard Dentiste{% endblock %}
@@ -30,20 +30,13 @@
     <!-- MAIN CONTENT -->
     <main class="content">
 
-        <!-- TOP BAR -->
-        <header class="topbar">
-            <input type="text" placeholder="Rechercher...">
-            <div class="icons">
-                <span class="icon">🔔</span>
-                <span class="icon">⚙️</span>
-            </div>
-        </header>
+        <h1 class="welcome-title">
+         Bienvenue, Dr. {{ app.user.prenom }} !
+    </h1>
 
         <!-- GRAPH SECTION -->
         <section class="stats-section">
             <h2>Statistiques des Rendez-Vous</h2>
-
-            <!-- canvas unique -->
             <canvas id="rdvChart" width="400" height="150"></canvas>
         </section>
 
@@ -51,12 +44,6 @@
 </div>
 
 <!-- SCRIPT CHART JS -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<h2>Statistiques des Rendez-Vous</h2>
-
-<canvas id="rdvChart"></canvas>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -83,6 +70,5 @@ new Chart(ctx, {
     }
 });
 </script>
-
 
 {% endblock %}
