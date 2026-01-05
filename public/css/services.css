@@ -1,125 +1,190 @@
-/* ===============================
-   PALETTE & BASE
-================================ */
-:root {
-    --bleu-principal: #2A5BD7;
-    --bleu-clair: #E8F4FE;
-    --bleu-fonce: #0A2A75;
-    --gris-clair: #F7FAFC;
-    --gris: #CBD5E0;
-    --texte: #2D3748;
-    --ombre: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
+/* ========================= */
+/*       BACKGROUND GLOBAL   */
+/* ========================= */
 
 body {
-    background-color: var(--gris-clair);
+    background: #f3f6ff; /* Fond bleu très clair, professionnel */
 }
 
-/* ===============================
-   CONTENEUR
-================================ */
-.services-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+.content {
+    background: transparent;
+    padding: 30px 40px;
 }
 
-.services-title {
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-    color: var(--bleu-fonce);
-    margin-bottom: 40px;
+
+/* ========================= */
+/*      HEADER SERVICES      */
+/* ========================= */
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 18px 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin-bottom: 30px;
 }
 
-/* ===============================
-   GRID
-================================ */
-.services-grid {
+.service-header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1b3d75;
+}
+
+.add-btn {
+    background: linear-gradient(90deg, #1d5fff, #4a8dff);
+    color: #fff;
+    padding: 10px 22px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.25s ease;
+    box-shadow: 0 5px 15px rgba(30,90,255,0.25);
+}
+
+.add-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* ========================= */
+/*         GRID SERVICES     */
+/* ========================= */
+
+.service-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-/* ===============================
-   CARD
-================================ */
+
+/* ========================= */
+/*         SERVICE CARD      */
+/* ========================= */
+
 .service-card {
-    background: white;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: var(--ombre);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+    border: 1px solid #dce6ff;
+    transition: .3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 15px 35px rgba(42, 91, 215, 0.2);
+    box-shadow: 0 15px 28px rgba(0,0,0,0.12);
+    border-color: #bfcfff;
 }
 
-/* ===============================
-   IMAGE
-================================ */
-.service-image {
-    height: 180px;
-    background-color: var(--bleu-clair);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.service-img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
 }
 
-.service-image img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
+
+/* ========================= */
+/*   TITRE + DESCRIPTION     */
+/* ========================= */
+
+.title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1f3e82;
+    margin-bottom: 6px;
 }
 
-/* ===============================
-   CONTENU
-================================ */
-.service-content {
-    padding: 20px;
-}
-
-.service-content h3 {
-    font-size: 20px;
-    color: var(--bleu-principal);
+.description {
+    font-size: 14px;
+    color: #555;
     margin-bottom: 10px;
 }
 
-.service-content p {
-    font-size: 14px;
-    color: var(--texte);
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
 
-/* ===============================
-   PRIX
-================================ */
-.service-price {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--bleu-fonce);
-    margin-bottom: 15px;
-}
+/* ========================= */
+/*         NEW PRICE STYLE   */
+/* ========================= */
 
-/* ===============================
-   BOUTON
-================================ */
-.service-btn {
+.price {
     display: inline-block;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    background: linear-gradient(135deg, #2A5BD7, #4A7EFF);
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: background 0.3s ease;
+    background: linear-gradient(90deg, #0066ff, #3a8bff);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 10px 0;
+    box-shadow: 0 4px 10px rgba(0, 100, 255, .20);
+    transition: .25s ease;
 }
 
-.service-btn:hover {
-    background: linear-gradient(135deg, #1E4FC6, #2A5BD7);
+.service-card:hover .price {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 100, 255, .30);
+}
+
+
+/* ========================= */
+/*          ACTIONS          */
+/* ========================= */
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.actions a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .25s ease;
+}
+
+/* Modifier */
+.actions .edit {
+    background: #3A7BFF;
+    color: #fff;
+}
+
+.actions .edit:hover {
+    background: #1a63f5;
+}
+
+/* Supprimer */
+.actions .delete {
+    background: #ff4d4d;
+    color: #fff;
+}
+
+.actions .delete:hover {
+    background: #e63838;
+}
+
+
+/* ========================= */
+/*           EMPTY           */
+/* ========================= */
+
+.empty {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: #444;
+    font-size: 18px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
 }

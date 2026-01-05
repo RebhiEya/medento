@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\RendezVous;
 use App\Repository\RendezVousRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,5 +38,16 @@ class SecretaireController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('secretaire_dashboard');
+    }
+
+    // ⭐ AJOUT : PAGE PATIENTS
+    #[Route('/secretaire/patients', name: 'secretaire_patients')]
+    public function patients(UserRepository $userRepo): Response
+    {
+        $patients = $userRepo->findPatients();
+
+        return $this->render('secretaire/patients.html.twig', [
+            'patients' => $patients
+        ]);
     }
 }

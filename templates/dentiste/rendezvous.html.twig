@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/dash_dentist.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dentiste_rdv.css') }}">
+{% endblock %}
+
+{% block title %}Liste des rendez-vous{% endblock %}
+
+{% block body %}
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR (identique au dashboard) -->
+    <aside class="sidebar">
+        <div class="profile">
+            <img src="{{ asset('images/docteur.png') }}" alt="docteur">
+            <h3>Docteur. {{ app.user.prenom }}</h3>
+            <p>{{ app.user.email }}</p>
+        </div>
+
+        <ul class="menu">
+            <li><a href="{{ path('dentiste_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ path('dentiste_patients') }}">Patients</a></li>
+            <li class="active"><a href="{{ path('dentiste_rendezvous') }}">Rendez-vous</a></li>
+            <li><a href="{{ path('dentiste_service') }}">Service</a></li>
+            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+        </ul>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+        <h1 class="page-title">Liste des rendez-vous</h1>
+
+        <table class="table-rdv">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for r in rendezVous %}
+                    <tr>
+                        <td>{{ r.id }}</td>
+                        <td>{{ r.date|date('d/m/Y H:i') }}</td>
+                        <td>{{ r.nom }}</td>
+                        <td>{{ r.prenom }}</td>
+                        <td>{{ r.description }}</td>
+                        <td>{{ r.status }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="no-data">Aucun rendez-vous trouvé.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </main>
+</div>
+
+{% endblock %}

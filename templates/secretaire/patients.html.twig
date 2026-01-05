@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/dash_secre.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR (copié du dashboard) -->
+    <aside class="sidebar">
+        <div class="user-box">
+            <div class="avatar">🛂</div>
+            <h3>Secrétaire</h3>
+            <span class="role">Gestion rendez-vous</span>
+        </div>
+
+        <nav class="menu">
+            <a href="{{ path('secretaire_dashboard') }}">📋 Tous les rendez-vous</a>
+            <a href="{{ path('secretaire_patients') }}" class="active">👤 Patients</a>
+            <a href="{{ path('app_logout') }}" class="logout">🚪 Déconnexion</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+        <h2 class="section-title">👤 Liste des patients</h2>
+
+        <div class="table-container">
+            <table class="rdv-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for patient in patients %}
+                    <tr>
+                        <td>{{ patient.prenom }} {{ patient.nom }}</td>
+                        <td>{{ patient.email }}</td>
+                        <td>{{ patient.tel }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="empty-text">Aucun patient trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</div>
+{% endblock %}

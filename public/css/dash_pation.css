@@ -1,0 +1,226 @@
+/* ------------------------------ */
+/* GLOBAL */
+/* ------------------------------ */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f7faff);
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Container */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ------------------------------ */
+/* SIDEBAR */
+/* ------------------------------ */
+.sidebar {
+    width: 270px;
+    background: linear-gradient(180deg, #283b8f, #1a255c);
+    padding: 30px 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-shadow: 5px 0 18px rgba(0, 0, 0, 0.12);
+}
+
+/* User Area */
+.user-box {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.avatar {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.user-box h3 {
+    margin: 8px 0 3px;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.role {
+    font-size: 13px;
+    background: rgba(255,255,255,0.15);
+    padding: 5px 12px;
+    border-radius: 15px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+/* Menu links */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.menu a {
+    padding: 12px 15px;
+    border-radius: 10px;
+    color: #d0d8ff;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.25s ease;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+    color: #fff;
+}
+
+.menu a.active {
+    background: #4c66ff;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(76,102,255,0.4);
+}
+
+.logout {
+    margin-top: auto;
+    background: #e63946 !important;
+    color: #fff !important;
+}
+
+.logout:hover {
+    background: #c71f33 !important;
+}
+
+/* ------------------------------ */
+/* MAIN CONTENT */
+/* ------------------------------ */
+.main-content {
+    flex: 1;
+    padding: 40px 60px;
+    animation: fadeInRight 0.8s ease;
+}
+
+/* Header */
+.header h2 {
+    font-size: 30px;
+    color: #1f2d5a;
+    margin-bottom: 5px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.header p {
+    color: #69719d;
+    margin-bottom: 25px;
+}
+
+/* ------------------------------ */
+/* CARD (Glass Effect) */
+/* ------------------------------ */
+.card {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    animation: fadeIn 1s ease;
+}
+
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #293a6d;
+    font-weight: 600;
+}
+
+/* ------------------------------ */
+/* TABLE */
+/* ------------------------------ */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: linear-gradient(90deg, #4c66ff, #6a82fb);
+}
+
+.table th {
+    padding: 15px;
+    text-align: left;
+    color: white;
+    font-weight: 500;
+}
+
+.table td {
+    padding: 15px;
+    background: #ffffffd9;
+    border-bottom: 1px solid #eef1ff;
+    color: #3c4168;
+    transition: 0.2s ease;
+}
+
+/* Hover row */
+.table tbody tr:hover td {
+    background: #f3f6ff;
+    transform: scale(1.01);
+}
+
+/* ------------------------------ */
+/* BADGES */
+/* ------------------------------ */
+.badge {
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Status colors */
+.badge.valide {
+    background: #d4f8e8;
+    color: #0f8a59;
+}
+
+.badge.en_attente {
+    background: #fff0c2;
+    color: #ad7800;
+}
+
+.badge.annule {
+    background: #ffd6d8;
+    color: #c62828;
+}
+
+/* ------------------------------ */
+/* ANIMATIONS */
+/* ------------------------------ */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeInRight {
+    from {opacity: 0; transform: translateX(40px);}
+    to {opacity: 1; transform: translateX(0);}
+}
+
+@keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeInDown {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}

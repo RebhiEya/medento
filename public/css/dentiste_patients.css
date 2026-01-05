@@ -1,0 +1,79 @@
+/* ================================
+   PAGE PATIENTS - STYLE MODERNE
+================================ */
+
+.content {
+    padding: 40px;
+    width: 100%;
+    background: #f5f9ff; /* bleu très clair médical */
+    min-height: 100vh;
+}
+
+/* TITRE */
+.content h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a3d8f; /* bleu foncé */
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+    border-left: 6px solid #4a7eff;   /* bleu médical */
+    padding-left: 12px;
+}
+
+/* TABLE PATIENTS */
+.patients-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* ENTÊTE TABLE */
+.patients-table thead tr {
+    background: linear-gradient(90deg, #2a5bd7, #4a7eff);
+    color: white;
+}
+
+/* STYLE DES CELLES */
+.patients-table th,
+.patients-table td {
+    padding: 16px 18px;
+    text-align: left;
+    font-size: 15px;
+}
+
+/* LIGNES ALTERNÉES */
+.patients-table tbody tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* HOVER */
+.patients-table tbody tr {
+    transition: 0.25s;
+}
+
+.patients-table tbody tr:hover {
+    background: #e3edff;
+    transform: scale(1.005);
+}
+
+/* STYLE DU TEXTE */
+.patients-table tbody td {
+    color: #333;
+    font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .patients-table th,
+    .patients-table td {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .content h1 {
+        font-size: 24px;
+    }
+}

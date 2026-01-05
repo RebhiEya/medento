@@ -19,9 +19,9 @@
         </div>
 
         <ul class="menu">
-            <li class="active"><a href="#">Dashboard</a></li>
-            <li><a href="#">Patients</a></li>
-            <li><a href="#">Rendez-vous</a></li>
+            <li class="active"><a href="{{ path('dentiste_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ path('dentiste_patients') }}">Patients</a></li>
+            <li><a href="{{ path('dentiste_rendezvous') }}">Rendez-vous</a></li>
             <li><a href="{{ path('dentiste_service') }}">Service</a></li>
             <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
         </ul>
